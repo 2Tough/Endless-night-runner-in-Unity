@@ -26,6 +26,14 @@ public class RoadGenerator : MonoBehaviour
         {
             road.transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
         }
+
+        if (roads[0].transform.position.z < -15)
+        {
+            Destroy(roads[0]);
+            roads.RemoveAt(0);
+
+            CreateNextRoad();
+        }
     }
 
     public void StartLevel()
@@ -37,8 +45,7 @@ public class RoadGenerator : MonoBehaviour
     {
         speed = 0;
         while (roads.Count > 0) {
-            Destroy(roads[0]);
-            roads.RemoveAt(0);
+           
         }
         for (int i = 0; i < maxRoadCount; i++)
         {
